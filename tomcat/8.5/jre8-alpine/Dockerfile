@@ -1,4 +1,4 @@
-FROM tomcat:8.5.31-jre8-alpine
+FROM tomcat:8.5.33-jre8-alpine
 
 ARG uid=1000
 ARG gid=1000
@@ -16,8 +16,11 @@ COPY _inputrc $CATALINA_HOME/.inputrc
 RUN sed -i 's|<WatchedResource>|<!--<WatchedResource>|' $CATALINA_HOME/conf/context.xml && \
     sed -i 's|</WatchedResource>|</WatchedResource>-->|' $CATALINA_HOME/conf/context.xml && \
     sed -i '/<Connector port="8080" protocol="HTTP\/1.1"/{n;n;s/redirectPort="8443" \/>/redirectPort="8443" relaxedPathChars="[]|" relaxedQueryChars="[]|{}^\&#x5c;\&#x60;\&quot;\&lt;\&gt;" \/>/}' $CATALINA_HOME/conf/server.xml && \
+    sed -i 's|prefix="localhost_access_log" suffix=".txt"|prefix="localhost_access_log" suffix=".txt" conditionUnless="skipAccessLog"|' $CATALINA_HOME/conf/server.xml && \
+    sed -i 's|handlers = 1catalina.org.apache.juli.AsyncFileHandler, 2localhost.org.apache.juli.AsyncFileHandler, 3manager.org.apache.juli.AsyncFileHandler, 4host-manager.org.apache.juli.AsyncFileHandler, java.util.logging.ConsoleHandler|handlers = 1catalina.org.apache.juli.AsyncFileHandler, 2localhost.org.apache.juli.AsyncFileHandler|' $CATALINA_HOME/conf/logging.properties && \
+    sed -i 's|.handlers = 1catalina.org.apache.juli.AsyncFileHandler, java.util.logging.ConsoleHandler|.handlers = 1catalina.org.apache.juli.AsyncFileHandler|' $CATALINA_HOME/conf/logging.properties && \
     mkdir -p $CATALINA_HOME/lib/org/apache/catalina/util && \
-    echo 'server.info=Apache Tomcat/8.5.x' >> $CATALINA_HOME/lib/org/apache/catalina/util/ServerInfo.properties && \
+    echo 'server.info=Apache Tomcat' >> $CATALINA_HOME/lib/org/apache/catalina/util/ServerInfo.properties && \
     addgroup -g $gid tomcat && \
     adduser -h $CATALINA_HOME -u $uid -G tomcat -s /sbin/nologin -D tomcat && \
     rm -rf $CATALINA_HOME/webapps/* && rm -rf $CATALINA_HOME/server/webapps/* && \
