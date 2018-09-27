@@ -1,8 +1,5 @@
 # tomcat
 
-### Source
-[https://github.com/zhao-xu/docker-files/tree/master/tomcat/8.5/jre8-alpine](https://github.com/zhao-xu/docker-files/tree/master/tomcat/8.5/jre8-alpine)
-
 基于 [tomcat:8.5-jre8-alpine](https://hub.docker.com/_/tomcat/)  
 * 修改了默认用户 `uid`/`gid`  
 * 增加编译时时区选择 `TZ`  
@@ -11,6 +8,12 @@
 [https://stackoverflow.com/questions/50361171/how-to-allow-character-in-urls-for-tomcat-8-5#answer-50377112](https://stackoverflow.com/questions/50361171/how-to-allow-character-in-urls-for-tomcat-8-5#answer-50377112)  
 * 加强 tomcat 安全性设置  
   [https://github.com/iammyr/docs/blob/3e99a347971cfa337a1a175bf24ad792342b86be/tomcat/content.md#hardening-tomcat-security](https://github.com/iammyr/docs/blob/3e99a347971cfa337a1a175bf24ad792342b86be/tomcat/content.md#hardening-tomcat-security)  
+
+### Source
+[https://github.com/zhao-xu/docker-files/tree/master/tomcat/8.5/jre8-alpine](https://github.com/zhao-xu/docker-files/tree/master/tomcat/8.5/jre8-alpine)
+
+### docker repo
+[https://hub.docker.com/r/zxdkhb/tomcat/tags/](https://hub.docker.com/r/zxdkhb/tomcat/tags/)
 
 ### 参数
 `uid` 运行 tomcat 的 uid，默认 `1000`  
