@@ -2,19 +2,20 @@ language: bash
 services: docker
 
 env:
-  - DOCKER_DIR=8/jre-alpine DOCKER_TAG=8-jre-alpine
-  - DOCKER_DIR=10/jre DOCKER_TAG=10-jre
-  - DOCKER_DIR=11/jre DOCKER_TAG=11-jre
+  - DOCKER_DIR=spring-boot-web/8/jre-alpine DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=8-jre-alpine
+  - DOCKER_DIR=spring-boot-web/10/jre DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=10-jre
+  - DOCKER_DIR=spring-boot-web/11/jre DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=11-jre
+  - DOCKER_DIR=tomcat/9.0/jdk11 DOCKER_REPO=zxdkhb/tomcat DOCKER_TAG=9-jdk11
 
 script:
-  - cd spring-boot-web/$DOCKER_DIR
+  - cd $DOCKER_DIR
   - |
     (
       set -Eeuo pipefail
       set -x
-      docker build -t zxdkhb/spring-boot-web:$DOCKER_TAG .
-      docker build -t zxdkhb/spring-boot-web:mce-cn-$DOCKER_TAG --build-arg uid=1001 --build-arg gid=1001 --build-arg TZ=Asia/Shanghai .
-      docker build -t zxdkhb/spring-boot-web:mce-com-$DOCKER_TAG --build-arg uid=1001 --build-arg gid=1001 --build-arg TZ=America/New_York .
+      docker build -t $DOCKER_REPO:$DOCKER_TAG .
+      docker build -t $DOCKER_REPO:mce-cn-$DOCKER_TAG --build-arg uid=1001 --build-arg gid=1001 --build-arg TZ=Asia/Shanghai .
+      docker build -t $DOCKER_REPO:mce-com-$DOCKER_TAG --build-arg uid=1001 --build-arg gid=1001 --build-arg TZ=America/New_York .
     )
   - cd -
 
@@ -25,6 +26,6 @@ deploy:
   on:
     branch: master
   provider: script
-  script: bash publish.sh zxdkhb/spring-boot-web $DOCKER_TAG
+  script: bash publish.sh $DOCKER_REPO $DOCKER_TAG
 
 # vim: set et ts=2 sw=2:
