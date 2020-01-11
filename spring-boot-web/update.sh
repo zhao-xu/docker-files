@@ -6,6 +6,7 @@ declare -a versions=(
     8-jre-alpine
     10-jre
     11-jre
+    11-jre-openj9
 )
 for version in "${versions[@]}"; do
     IFS='-'
