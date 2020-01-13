@@ -2,11 +2,13 @@ language: bash
 services: docker
 
 env:
-  - DOCKER_DIR=spring-boot-web/8/jre-alpine DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=8-jre-alpine
-  - DOCKER_DIR=spring-boot-web/10/jre DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=10-jre
-  - DOCKER_DIR=spring-boot-web/11/jre DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=11-jre
-  - DOCKER_DIR=spring-boot-web/11/jre-openj9 DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=11-jre-openj9
-  - DOCKER_DIR=tomcat/9.0/jdk11 DOCKER_REPO=zxdkhb/tomcat DOCKER_TAG=9-jdk11
+#  - DOCKER_DIR=spring-boot-web/8/jre-alpine DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=8-jre-alpine
+#  - DOCKER_DIR=spring-boot-web/10/jre DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=10-jre
+#  - DOCKER_DIR=spring-boot-web/11/jre DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=11-jre
+#  - DOCKER_DIR=spring-boot-web/11/jre-openj9 DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=11-jre-openj9
+#  - DOCKER_DIR=tomcat/9.0/jdk11 DOCKER_REPO=zxdkhb/tomcat DOCKER_TAG=9-jdk11
+  - DOCKER_DIR=spring-boot-web/11/jdk DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=11-jdk
+  - DOCKER_DIR=spring-boot-web/11/jdk-openj9 DOCKER_REPO=zxdkhb/spring-boot-web DOCKER_TAG=11-jdk-openj9
 
 script:
   - cd $DOCKER_DIR
