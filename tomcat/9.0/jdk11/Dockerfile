@@ -35,7 +35,7 @@ RUN sed -i 's|<WatchedResource>|<!--<WatchedResource>|' $CATALINA_HOME/conf/cont
     chown -R tomcat:tomcat $CATALINA_HOME/work && chmod 570 $CATALINA_HOME/bin/catalina.sh && \
     chmod -R 500 $CATALINA_HOME/conf && chmod -R 300 $CATALINA_HOME/logs && \
     chmod -R 770 $CATALINA_HOME/work && chmod -R 550 $CATALINA_HOME/webapps/ && \
-    chmod -R 600 $CATALINA_HOME/temp
+    chmod -R 770 $CATALINA_HOME/temp
 
 USER tomcat
 
